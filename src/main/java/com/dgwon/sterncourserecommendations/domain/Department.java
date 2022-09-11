@@ -1,10 +1,5 @@
 package com.dgwon.sterncourserecommendations.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-
-import java.util.stream.Stream;
-
 public enum Department {
     ACCOUNTING("Accounting"),
     BUSINESS_AND_SOCIETY("Business and Society"),
@@ -23,22 +18,21 @@ public enum Department {
     STATISTICS_AND_OPERATIONS_RESEARCH("Statistics and Operations Research"),
     TECHNOLOGY("Technology");
 
-    private String department;
+    private String label;
 
-    private Department(String department) {
-        this.department = department;
+    private Department(String label) {
+        this.label = label;
     }
 
-    @JsonCreator
-    public static Department decode(final String department) {
-        return Stream.of(Department.values())
-                .filter(targetEnum -> targetEnum.department.equals(department))
-                .findFirst()
-                .orElse(null);
+    public static Department findByLabel(String byLabel) {
+        for (Department d: Department.values()) {
+            if (d.label.equalsIgnoreCase(byLabel))
+                return d;
+        }
+        return null;
     }
 
-    @JsonValue
-    public String getDepartment() {
-        return this.department;
+    public String getLabel() {
+        return label;
     }
 }

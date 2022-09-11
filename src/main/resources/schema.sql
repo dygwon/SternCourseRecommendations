@@ -9,7 +9,7 @@ CREATE TABLE rating (
     course_code CHAR(12),
     student_id  BIGINT,
     rating SMALLINT NOT NULL,
-    comment VARCHAR(256),
+    comment VARCHAR(1000),
     recommended BOOLEAN
 );
 ALTER TABLE rating ADD FOREIGN KEY (course_code) REFERENCES course(code);
