@@ -1,5 +1,5 @@
 CREATE TABLE course (
-    code CHAR(12) NOT NULL UNIQUE,
+    code CHAR(11) NOT NULL UNIQUE,
     title VARCHAR(100) NOT NULL,
     department VARCHAR(50) NOT NULL
 );
