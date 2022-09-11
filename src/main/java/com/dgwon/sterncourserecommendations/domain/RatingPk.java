@@ -11,13 +11,13 @@ public class RatingPk implements Serializable {
     private Course course;
 
     @Column(insertable = false, updatable = false, nullable = false)
-    private String userId;
+    private Integer studentId;
 
     public RatingPk() {}
 
-    public RatingPk(Course course, String userId) {
+    public RatingPk(Course course, Integer studentId) {
         this.course = course;
-        this.userId = userId;
+        this.studentId = studentId;
     }
 
     public Course getCourse() {
@@ -28,11 +28,11 @@ public class RatingPk implements Serializable {
         this.course = course;
     }
 
-    public String getUserId() {
-        return userId;
+    public Integer getStudentId() {
+        return studentId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 }

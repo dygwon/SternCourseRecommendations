@@ -36,7 +36,7 @@ public class RatingController {
     public RatingDto createRating(@PathVariable(value = "courseCode") String courseCode,
                              @RequestBody @Validated RatingDto ratingDto) {
         Course course = verifyCourse(courseCode);
-        Rating newRating = ratingRepository.save(new Rating(new RatingPk(course, ratingDto.getUserId()),
+        Rating newRating = ratingRepository.save(new Rating(new RatingPk(course, ratingDto.getStudentId()),
                 ratingDto.getRating(), ratingDto.getComment(), ratingDto.isRecommended()));
         return new RatingDto(newRating);
     }
@@ -64,7 +64,7 @@ public class RatingController {
     @PutMapping
     public RatingDto updateWithPut(@PathVariable(value = "courseCode") String courseCode,
                                    @RequestBody @Validated RatingDto ratingDto) {
-        Rating rating = verifyRating(courseCode, ratingDto.getUserId());
+        Rating rating = verifyRating(courseCode, ratingDto.getStudentId());
         rating.setRating(ratingDto.getRating());
         rating.setComment(ratingDto.getComment());
         rating.setRecommended(ratingDto.isRecommended());
@@ -74,7 +74,7 @@ public class RatingController {
     @PatchMapping
     public RatingDto updateWithPatch(@PathVariable(value = "courseCode") String courseCode,
                                      @RequestBody @Validated RatingDto ratingDto) {
-        Rating rating = verifyRating(courseCode, ratingDto.getUserId());
+        Rating rating = verifyRating(courseCode, ratingDto.getStudentId());
         if (ratingDto.getRating() != null)
             rating.setRating(ratingDto.getRating());
         if (ratingDto.getComment() != null)
@@ -86,8 +86,8 @@ public class RatingController {
 
     @DeleteMapping(path = "/{userId}")
     public void delete(@PathVariable(value = "courseCode") String courseCode,
-                       @PathVariable(value = "userId") String userId) {
-        Rating rating = verifyRating(courseCode, userId);
+                       @PathVariable(value = "userId") Integer studentId) {
+        Rating rating = verifyRating(courseCode, studentId);
         ratingRepository.delete(rating);
     }
 
@@ -97,9 +97,9 @@ public class RatingController {
                 new NoSuchElementException("Course does not exist " + courseCode));
     }
 
-    private Rating verifyRating(String courseCode, String userId) throws NoSuchElementException {
-        return ratingRepository.findByPkCourseCodeAndPkUserId(courseCode, userId).orElseThrow(() ->
-                new NoSuchElementException("(" + courseCode + ", " + userId + ") is not a valid Course-Rating pair"));
+    private Rating verifyRating(String courseCode, Integer studentId) throws NoSuchElementException {
+        return ratingRepository.findByPkCourseCodeAndPkStudentId(courseCode, studentId).orElseThrow(() ->
+                new NoSuchElementException("(" + courseCode + ", " + studentId + ") is not a valid Course-Rating pair"));
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)

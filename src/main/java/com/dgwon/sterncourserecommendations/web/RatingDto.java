@@ -18,17 +18,17 @@ public class RatingDto {
     private Boolean recommended;
 
     @NotNull
-    private String userId;
+    private Integer studentId;
 
     public RatingDto(Rating rating) {
-        this(rating.getRating(), rating.getComment(), rating.isRecommended(), rating.getPk().getUserId());
+        this(rating.getRating(), rating.getComment(), rating.isRecommended(), rating.getPk().getStudentId());
     }
 
-    public RatingDto(Integer rating, String comment, Boolean recommended, String userId) {
+    public RatingDto(Integer rating, String comment, Boolean recommended, Integer studentId) {
         this.rating = rating;
         this.comment = comment;
         this.recommended = recommended;
-        this.userId = userId;
+        this.studentId = studentId;
     }
 
     protected RatingDto() {}
@@ -57,11 +57,11 @@ public class RatingDto {
         this.recommended = recommended;
     }
 
-    public String getUserId() {
-        return userId;
+    public Integer getStudentId() {
+        return studentId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 }

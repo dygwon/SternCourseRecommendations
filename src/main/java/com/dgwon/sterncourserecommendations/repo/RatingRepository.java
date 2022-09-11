@@ -13,6 +13,6 @@ import java.util.Optional;
 @RepositoryRestResource(exported = false)
 public interface RatingRepository extends CrudRepository<Rating, RatingPk> {
     List<Rating> findByPkCourseCode(String id);
-    Optional<Rating> findByPkCourseCodeAndPkUserId(String id, String userId);
+    Optional<Rating> findByPkCourseCodeAndPkStudentId(String id, Integer studentId);
     Page<Rating> findByPkCourseCode(String courseId, Pageable pageable);
 }
