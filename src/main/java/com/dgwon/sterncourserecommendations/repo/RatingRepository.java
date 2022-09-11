@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RepositoryRestResource(exported = false)
 public interface RatingRepository extends CrudRepository<Rating, RatingPk> {
-    List<Rating> findByPkCourseId(String id);
-    Optional<Rating> findByPkCourseIdAndPkUserId(String id, String userId);
-    Page<Rating> findByPkCourseId(String courseId, Pageable pageable);
+    List<Rating> findByPkCourseCode(String id);
+    Optional<Rating> findByPkCourseCodeAndPkUserId(String id, String userId);
+    Page<Rating> findByPkCourseCode(String courseId, Pageable pageable);
 }

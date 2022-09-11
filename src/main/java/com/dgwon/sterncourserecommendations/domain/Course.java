@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Course {
     @Id
-    private String id;
+    private String code;
 
     @Column
     private String title;
@@ -14,8 +14,8 @@ public class Course {
     @Enumerated
     private Department department;
 
-    public Course(String id, String title, Department department) {
-        this.id = id;
+    public Course(String code, String title, Department department) {
+        this.code = code;
         this.title = title;
         this.department = department;
     }
@@ -23,12 +23,12 @@ public class Course {
     protected Course() {
     }
 
-    public String getId() {
-        return id;
+    public String getCode() {
+        return code;
     }
 
-    public void setId(String courseCode) {
-        this.id = courseCode;
+    public void setCode(String courseCode) {
+        this.code = courseCode;
     }
 
     public String getTitle() {
