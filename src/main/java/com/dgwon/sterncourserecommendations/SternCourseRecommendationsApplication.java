@@ -2,7 +2,7 @@ package com.dgwon.sterncourserecommendations;
 
 import com.dgwon.sterncourserecommendations.domain.Department;
 import com.dgwon.sterncourserecommendations.service.CourseService;
-import com.dgwon.sterncourserecommendations.service.RatingService;
+//import com.dgwon.sterncourserecommendations.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,8 +13,8 @@ public class SternCourseRecommendationsApplication implements CommandLineRunner 
     @Autowired
     private CourseService courseService;
 
-    @Autowired
-    private RatingService ratingService;
+//    @Autowired
+//    private RatingService ratingService;
 
     public static void main(String[] args) {
         SpringApplication.run(SternCourseRecommendationsApplication.class, args);
@@ -23,7 +23,7 @@ public class SternCourseRecommendationsApplication implements CommandLineRunner 
     @Override
     public void run(String... args) throws Exception {
         createCourses();
-        createRatings();
+//        createRatings();
     }
 
     private void createCourses() {
@@ -35,8 +35,8 @@ public class SternCourseRecommendationsApplication implements CommandLineRunner 
         this.courseService.createCourse("OPMG-GB2316", "Operations Consulting: An Experiential Approach", Department.OPERATIONS_MANAGEMENT);
     }
 
-    private void createRatings() {
-        this.ratingService.createRating("TECH-GB2131", 5, true, "Good overview of the topic");
-        this.ratingService.createRating("OPMG-GB2308", 2, false, "Basically the same as operations management");
-    }
+//    private void createRatings() {
+//        this.ratingService.createRating("TECH-GB2131", 5, true, "Good overview of the topic");
+//        this.ratingService.createRating("OPMG-GB2308", 2, false, "Basically the same as operations management");
+//    }
 }

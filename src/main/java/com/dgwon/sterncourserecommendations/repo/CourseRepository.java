@@ -28,9 +28,9 @@ public interface CourseRepository extends PagingAndSortingRepository<Course, Str
     @RestResource(exported = false)
     void delete(Course entity);
 
-    @Override
-    @RestResource(exported = false)
-    void deleteAllById(Iterable<? extends String> strings);
+//    @Override
+//    @RestResource(exported = false)
+//    void deleteAllById(Iterable<? extends String> strings);
 
     @Override
     @RestResource(exported = false)

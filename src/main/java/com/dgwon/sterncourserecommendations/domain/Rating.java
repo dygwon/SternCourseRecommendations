@@ -4,46 +4,30 @@ import javax.persistence.*;
 
 @Entity
 public class Rating {
-    @Id
-    @GeneratedValue
-    private Integer ratingId;
+    @EmbeddedId
+    private RatingPk pk;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Course course;
-
-    @Column
-    private int rating;
-
-    @Column
-    private boolean recommended;
+    @Column(nullable = false)
+    private Integer rating;
 
     @Column(length = 2000)
     private String comment;
 
-    public Rating(Course course, int rating, boolean recommended, String comment) {
-        this.course = course;
+    @Column
+    private Boolean recommended;
+
+    public Rating(RatingPk pk, Integer rating, String comment, Boolean recommended) {
+        this.pk = pk;
         this.rating = rating;
-        this.recommended = recommended;
         this.comment = comment;
+        this.recommended = recommended;
     }
 
     protected Rating() {}
 
-    public Integer getRatingId() {
-        return ratingId;
-    }
+    public RatingPk getPk() { return pk; }
 
-    public void setRatingId(Integer ratingId) {
-        this.ratingId = ratingId;
-    }
-
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
+    public void setPk(RatingPk pk) { this.pk = pk; }
 
     public int getRating() {
         return rating;
@@ -53,11 +37,11 @@ public class Rating {
         this.rating = rating;
     }
 
-    public boolean isRecommended() {
+    public Boolean isRecommended() {
         return recommended;
     }
 
-    public void setRecommended(boolean recommended) {
+    public void setRecommended(Boolean recommended) {
         this.recommended = recommended;
     }
 
