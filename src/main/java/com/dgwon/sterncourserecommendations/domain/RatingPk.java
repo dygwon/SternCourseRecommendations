@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class RatingPk implements Serializable {
@@ -34,5 +35,26 @@ public class RatingPk implements Serializable {
 
     public void setStudentId(Integer studentId) {
         this.studentId = studentId;
+    }
+
+    @Override
+    public String toString() {
+        return "RatingPk{" +
+                "course=" + course +
+                ", studentId=" + studentId +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RatingPk ratingPk = (RatingPk) o;
+        return Objects.equals(course, ratingPk.course) && Objects.equals(studentId, ratingPk.studentId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(course, studentId);
     }
 }
